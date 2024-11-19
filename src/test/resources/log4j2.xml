@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+    
+    <Properties>
+    	<property name = "basePath">./logs/</property>
+    
+    </Properties>
+    
+        <Console name="Console"
+                 target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        
+        <RollingFile name="File" fileName="logs/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%highlight{%-5level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
+            <SizeBasedTriggeringPolicy size="50000"/>
+        </RollingFile>
+        
+    </Appenders>
+    
+    <Loggers>
+        <Root level="Info"> <!-- levels of loggers are as follows <Trace <Debug <Info <Warn <Error <Fatal <Off  you can choose your own level-->
+           <!--  <AppenderRef ref="Console"/>  uncomment this if you want the logs to be displayed even in console-->
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
